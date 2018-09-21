@@ -5,29 +5,32 @@ using UnityEngine;
 public class ShipGenerator : MonoBehaviour {
 
 	public int genTime = 10;
-	public int maxShipNumber = 3;
-	public int startingShipNumber;
+	public int maxShipNumber;
+	public int nextShipNumber;
 
 	[SerializeField]
 	private Ship shipPrefab;
+	[SerializeField]
+	private int i = 0;
 
-	private void Awake () {
-		startingShipNumber = Random.Range (0, 9999);
-		Debug.Log ("Starting ship number is " + startingShipNumber);
+	private void Start () {
+		nextShipNumber = Random.Range (0, 9999);
+		Debug.Log ("Starting ship number is " + nextShipNumber);
 	}
 
 	void Update () {
+		maxShipNumber = this.GetComponent<PlatformHolder> ().platformsNumber;
 		if (Input.GetKeyDown (KeyCode.Space)) {
-			StartCoroutine (GenerateShip ());
+			StartCoroutine (GenerationCooldown ());
 		}
 	}
 
-	IEnumerator GenerateShip () {
-		while (true) {
-			yield return new WaitForSeconds (genTime);
-			var shipNumber = startingShipNumber++;
+	IEnumerator GenerationCooldown () {
+		while (i < maxShipNumber) {
 			Instantiate (shipPrefab, new Vector2 (0, 0), Quaternion.identity);
-			shipPrefab.thisShipNumber = shipNumber;
+			yield return new WaitForSeconds (genTime);
+			nextShipNumber = nextShipNumber + 1;
+			i = i + 1;
 		}
 	}
 }

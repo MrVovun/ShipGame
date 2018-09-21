@@ -4,23 +4,29 @@ using UnityEngine;
 
 public class PlatformHolder : MonoBehaviour {
 
-	public int platformsNumber = 6;
+	public int platformsNumber;
 
 	[SerializeField]
 	private Platform platformPrefab;
 
-	private void Awake () {
+	private void Start () {
+		for (int i = 0; i < platformsNumber; i++) {
+			SpawnPlatform ();
+		}
+	}
+
+	private void Update () {
+		if (Input.GetKeyDown (KeyCode.Q)) {
+			SpawnPlatform ();
+			platformsNumber = platformsNumber + 1;
+		}
+	}
+
+	private void SpawnPlatform () {
 		Vector2 horOffset = new Vector2 (0, 2);
 		Vector2 verOffset = new Vector2 (2, 0);
-		for (int i = 0; i < 6; i++) {
-			if (i % 2 != 0) {
-				Instantiate (platformPrefab, new Vector2 (0, 0) + verOffset, Quaternion.identity);
-				verOffset = verOffset + new Vector2 (2, 0);
-			} else if (i % 2 == 0) {
-				Instantiate (platformPrefab, new Vector2 (0, 0) + horOffset, Quaternion.identity);
-				horOffset = horOffset + new Vector2 (0, 2);
-			}
-		}
+		Instantiate (platformPrefab, new Vector2 (0, 0), Quaternion.identity);
+		platformsNumber = platformsNumber + 1;
 	}
 
 }

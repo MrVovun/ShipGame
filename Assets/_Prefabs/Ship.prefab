@@ -51,4 +51,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc64cc1373a8b61439fdeb3f9ff24d04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisShipNumber: 8234
+  thisShipNumber: 0
+  gameManager: {fileID: 1763118626930506, guid: 1821cb710da1bc148a09511c7833389a,
+    type: 2}

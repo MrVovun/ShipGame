@@ -11,8 +11,9 @@ public class Platform : MonoBehaviour {
 	public PlatformButton myButton;
 
 	public void OccupyPlatform () {
-		Ship ship = GameObject.FindGameObjectWithTag ("GameController").GetComponent<ShipGenerator> ().GetFirstShipInList ();
-		GameObject.FindGameObjectWithTag ("GameController").GetComponent<ShipGenerator> ().RemoveFirstShipInList ();
+		ShipGenerator shipGen = GameObject.FindGameObjectWithTag ("GameController").GetComponent<ShipGenerator> ();
+		Ship ship = shipGen.GetFirstShipInList ();
+		shipGen.RemoveFirstShipInList ();
 		occupiedShipNumber = ship.thisShipNumber;
 		isOccupied = true;
 		Debug.Log ("Platform №" + platformNumber + " is occupied with ship №" + occupiedShipNumber);

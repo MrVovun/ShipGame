@@ -10,8 +10,11 @@ public class Ship : MonoBehaviour {
 
 	void Start () {
 		gameManager = GameObject.FindGameObjectWithTag ("GameController");
-		thisShipNumber = gameManager.GetComponent<ShipGenerator> ().nextShipNumber;
+		ShipGenerator shipGen = gameManager.GetComponent<ShipGenerator> ();
+		thisShipNumber = shipGen.nextShipNumber;
 		Debug.Log ("Ship №" + thisShipNumber + " has arrived");
+		int randomIndex = Random.Range (0, shipGen.spriteList.Count);
+		this.GetComponent<SpriteRenderer> ().sprite = shipGen.spriteList[randomIndex];
 	}
 
 }

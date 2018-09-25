@@ -10,6 +10,7 @@ public class ShipGenerator : MonoBehaviour {
 	[SerializeField]
 	private Ship shipPrefab;
 
+	public List<Sprite> spriteList = new List<Sprite> ();
 	List<Ship> ships = new List<Ship> ();
 
 	void Start () {

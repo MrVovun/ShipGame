@@ -1,32 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlatformHolder : MonoBehaviour {
 
 	public int platformsNumber;
+	public Canvas gameCanvas;
 
 	[SerializeField]
-	private Platform platformPrefab;
+	private GameObject platformLord;
 
-	private void Start () {
+	void Start () {
 		for (int i = 0; i < platformsNumber; i++) {
-			SpawnPlatform ();
+			Platform thisPlatform = platformLord.GetComponent<SpawnPlatforms> ().SpawnPlatform ();
+			thisPlatform.GetComponentInChildren<Platform> ().platformNumber = i;
+			gameCanvas.GetComponent<SpawnButtons> ().Spawn ().GetComponentInChildren<PlatformButton> ().myPlatform = thisPlatform;
+
 		}
 	}
 
-	private void Update () {
+	void Update () {
 		if (Input.GetKeyDown (KeyCode.Q)) {
-			SpawnPlatform ();
+			Platform thisPlatform = platformLord.GetComponent<SpawnPlatforms> ().SpawnPlatform ();
+			thisPlatform.GetComponentInChildren<Platform> ().platformNumber = platformsNumber;
+			gameCanvas.GetComponent<SpawnButtons> ().Spawn ().GetComponentInChildren<PlatformButton> ().myPlatform = thisPlatform;
 			platformsNumber = platformsNumber + 1;
 		}
-	}
-
-	private void SpawnPlatform () {
-		Vector2 horOffset = new Vector2 (0, 2);
-		Vector2 verOffset = new Vector2 (2, 0);
-		Instantiate (platformPrefab, new Vector2 (0, 0), Quaternion.identity);
-		platformsNumber = platformsNumber + 1;
 	}
 
 }

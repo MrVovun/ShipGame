@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ship
   - Platform
+  - Canvas
   layers:
   - Default
   - TransparentFX

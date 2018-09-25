@@ -8,7 +8,7 @@ public class Ship : MonoBehaviour {
 
 	private GameObject gameManager;
 
-	private void Start () {
+	void Start () {
 		gameManager = GameObject.FindGameObjectWithTag ("GameController");
 		thisShipNumber = gameManager.GetComponent<ShipGenerator> ().nextShipNumber;
 		Debug.Log ("Ship №" + thisShipNumber + " has arrived");

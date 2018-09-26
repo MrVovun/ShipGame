@@ -291,11 +291,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 665707797}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -4, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &881958136
 GameObject:
@@ -426,6 +426,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 1254642722510402, guid: b3506f74b99545b49ab8aacd02aacd06, type: 2}
+--- !u!1 &1229787937
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1229787938}
+  m_Layer: 0
+  m_Name: Exit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1229787938
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1229787937}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1565311481
 Prefab:
   m_ObjectHideFlags: 0
@@ -468,7 +496,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4997318052935398, guid: 1821cb710da1bc148a09511c7833389a, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114269800170439562, guid: 1821cb710da1bc148a09511c7833389a,
         type: 2}
@@ -701,6 +729,16 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: fc3580f4ddb5bb342abc8ebcdd5f8850,
         type: 3}
+    - target: {fileID: 114269800170439562, guid: 1821cb710da1bc148a09511c7833389a,
+        type: 2}
+      propertyPath: platformsNumber
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114423781457551716, guid: 1821cb710da1bc148a09511c7833389a,
+        type: 2}
+      propertyPath: exit
+      value: 
+      objectReference: {fileID: 1229787937}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1821cb710da1bc148a09511c7833389a, type: 2}
   m_IsPrefabAsset: 0

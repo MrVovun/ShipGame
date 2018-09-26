@@ -6,6 +6,7 @@ public class ShipGenerator : MonoBehaviour {
 
 	public int genTime = 10;
 	public int nextShipNumber;
+	public GameObject exit;
 
 	[SerializeField]
 	private Ship shipPrefab;
@@ -27,7 +28,8 @@ public class ShipGenerator : MonoBehaviour {
 	IEnumerator GenerationCooldown () {
 		while (true) {
 			if (ships.Count < this.GetComponent<PlatformHolder> ().platformsNumber) {
-				ships.Add (Instantiate (shipPrefab, new Vector2 (0, 0), Quaternion.identity));
+				Vector2 spawnPos = new Vector2 (0, 0) + new Vector2 (0, 1) * ships.Count;
+				ships.Add (Instantiate (shipPrefab, spawnPos, Quaternion.identity));
 			}
 			yield return new WaitForSeconds (genTime);
 			nextShipNumber = nextShipNumber + 1;

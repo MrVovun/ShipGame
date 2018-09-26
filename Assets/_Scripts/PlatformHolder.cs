@@ -11,17 +11,20 @@ public class PlatformHolder : MonoBehaviour {
 	[SerializeField]
 	private GameObject platformLord;
 
-	private Vector2 yOffset = new Vector2 (0, -2);
-	private Vector2 xOffset = new Vector2 (-2, 0);
+	private Vector2 yoffset = new Vector2 (0, 0);
+	private Vector2 xoffset = new Vector2 (1, 0);
 
 	void Start () {
 		for (int i = 0; i < platformsNumber; i++) {
 			Platform thisPlatform = platformLord.GetComponent<SpawnPlatforms> ().SpawnPlatform ();
 			thisPlatform.GetComponentInChildren<Platform> ().platformNumber = i;
+			thisPlatform.transform.SetParent (platformLord.transform);
 			if (i % 2 == 0) {
-				//spawn platform with offset on y
+				thisPlatform.transform.localPosition = yoffset;
+				yoffset = yoffset + new Vector2 (0, -1);
 			} else {
-				//spawn platform with offset on x
+				thisPlatform.transform.localPosition = xoffset;
+				xoffset = xoffset + new Vector2 (0, -1);
 			}
 			gameCanvas.GetComponent<SpawnButtons> ().Spawn ().GetComponentInChildren<PlatformButton> ().myPlatform = thisPlatform;
 
@@ -33,9 +36,11 @@ public class PlatformHolder : MonoBehaviour {
 			Platform thisPlatform = platformLord.GetComponent<SpawnPlatforms> ().SpawnPlatform ();
 			thisPlatform.GetComponentInChildren<Platform> ().platformNumber = platformsNumber;
 			if (platformsNumber % 2 == 0) {
-				//spawn platform with offset on y
+				thisPlatform.transform.localPosition = yoffset;
+				yoffset = yoffset + new Vector2 (0, -1);
 			} else {
-				//spawn platform with offset on x
+				thisPlatform.transform.localPosition = xoffset;
+				xoffset = xoffset + new Vector2 (0, -1);
 			}
 			gameCanvas.GetComponent<SpawnButtons> ().Spawn ().GetComponentInChildren<PlatformButton> ().myPlatform = thisPlatform;
 			platformsNumber = platformsNumber + 1;

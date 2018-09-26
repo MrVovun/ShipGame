@@ -53,6 +53,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisShipNumber: 0
+  speed: 2
+  myPlatform: {fileID: 0}
 --- !u!212 &212441536144688572
 SpriteRenderer:
   m_ObjectHideFlags: 1

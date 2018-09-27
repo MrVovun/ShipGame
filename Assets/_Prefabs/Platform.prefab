@@ -56,7 +56,7 @@ MonoBehaviour:
   occupiedShipNumber: 0
   platformNumber: 0
   myButton: {fileID: 0}
-  removalTime: 2
+  removalTime: 5
 --- !u!212 &212445088491523322
 SpriteRenderer:
   m_ObjectHideFlags: 1

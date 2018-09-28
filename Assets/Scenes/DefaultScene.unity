@@ -732,7 +732,7 @@ Prefab:
     - target: {fileID: 114269800170439562, guid: 1821cb710da1bc148a09511c7833389a,
         type: 2}
       propertyPath: platformsNumber
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114423781457551716, guid: 1821cb710da1bc148a09511c7833389a,
         type: 2}

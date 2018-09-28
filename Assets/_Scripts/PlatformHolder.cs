@@ -33,18 +33,23 @@ public class PlatformHolder : MonoBehaviour {
 
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.Q)) {
-			Platform thisPlatform = platformLord.GetComponent<SpawnPlatforms> ().SpawnPlatform ();
-			thisPlatform.GetComponentInChildren<Platform> ().platformNumber = platformsNumber;
-			if (platformsNumber % 2 == 0) {
-				thisPlatform.transform.localPosition = yoffset;
-				yoffset = yoffset + new Vector2 (0, -1);
-			} else {
-				thisPlatform.transform.localPosition = xoffset;
-				xoffset = xoffset + new Vector2 (0, -1);
-			}
-			gameCanvas.GetComponent<SpawnButtons> ().Spawn ().GetComponentInChildren<PlatformButton> ().myPlatform = thisPlatform;
-			platformsNumber = platformsNumber + 1;
+			SpawnOneMorePlatform ();
 		}
+	}
+
+	void SpawnOneMorePlatform () {
+		Platform thisPlatform = platformLord.GetComponent<SpawnPlatforms> ().SpawnPlatform ();
+		thisPlatform.GetComponentInChildren<Platform> ().platformNumber = platformsNumber;
+		thisPlatform.transform.SetParent (platformLord.transform);
+		if (platformsNumber % 2 == 0) {
+			thisPlatform.transform.localPosition = yoffset;
+			yoffset = yoffset + new Vector2 (0, -1);
+		} else {
+			thisPlatform.transform.localPosition = xoffset;
+			xoffset = xoffset + new Vector2 (0, -1);
+		}
+		gameCanvas.GetComponent<SpawnButtons> ().Spawn ().GetComponentInChildren<PlatformButton> ().myPlatform = thisPlatform;
+		platformsNumber = platformsNumber + 1;
 	}
 
 }

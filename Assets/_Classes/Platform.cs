@@ -25,12 +25,14 @@ public class Platform : MonoBehaviour {
 		Debug.Log ("Ship№" + occupiedShipNumber + " got off!");
 		ship.StartCoroutine ("MoveToExit");
 		occupiedShipNumber = 0;
-		isOccupied = false;
+		Debug.Log ("Cleaning up the place");
 	}
 
 	IEnumerator ShipOnPlatformCountodown () {
 		yield return new WaitForSeconds (removalTime);
-		ShipGetOff ();
+		if (occupiedShipNumber != 0) {
+			ShipGetOff ();
+		}
 	}
 
 	public void RemoveShipFromQueue () {

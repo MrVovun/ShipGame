@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PlatformHolder : MonoBehaviour {
 
 	public int platformsNumber;
-	public Canvas gameCanvas;
+	public GameObject buttonHolder;
 
 	[SerializeField]
 	private GameObject platformLord;
@@ -26,7 +26,7 @@ public class PlatformHolder : MonoBehaviour {
 				thisPlatform.transform.localPosition = xoffset;
 				xoffset = xoffset + new Vector2 (0, -1);
 			}
-			gameCanvas.GetComponent<SpawnButtons> ().Spawn ().GetComponentInChildren<PlatformButton> ().myPlatform = thisPlatform;
+			buttonHolder.GetComponent<SpawnButtons> ().Spawn ().GetComponentInChildren<PlatformButton> ().myPlatform = thisPlatform;
 
 		}
 	}
@@ -34,6 +34,10 @@ public class PlatformHolder : MonoBehaviour {
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.Q)) {
 			SpawnOneMorePlatform ();
+		} {
+			if (Input.GetKeyDown (KeyCode.E)) {
+				buttonHolder.GetComponent<SpawnButtons> ().SpawnDiscardButton ();
+			}
 		}
 	}
 
@@ -48,7 +52,7 @@ public class PlatformHolder : MonoBehaviour {
 			thisPlatform.transform.localPosition = xoffset;
 			xoffset = xoffset + new Vector2 (0, -1);
 		}
-		gameCanvas.GetComponent<SpawnButtons> ().Spawn ().GetComponentInChildren<PlatformButton> ().myPlatform = thisPlatform;
+		buttonHolder.GetComponent<SpawnButtons> ().Spawn ().GetComponentInChildren<PlatformButton> ().myPlatform = thisPlatform;
 		platformsNumber = platformsNumber + 1;
 	}
 

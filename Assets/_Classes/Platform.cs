@@ -9,7 +9,6 @@ public class Platform : MonoBehaviour {
 	public int occupiedShipNumber;
 	public int platformNumber;
 	public PlatformButton myButton;
-	public float removalTime = 2.0f;
 
 	private ShipGenerator shipGen;
 	private Ship ship;
@@ -26,13 +25,6 @@ public class Platform : MonoBehaviour {
 		ship.StartCoroutine ("MoveToExit");
 		occupiedShipNumber = 0;
 		Debug.Log ("Cleaning up the place");
-	}
-
-	IEnumerator ShipOnPlatformCountodown () {
-		yield return new WaitForSeconds (removalTime);
-		if (occupiedShipNumber != 0) {
-			ShipGetOff ();
-		}
 	}
 
 	public void RemoveShipFromQueue () {

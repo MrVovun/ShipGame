@@ -8,6 +8,7 @@ public class Ship : MonoBehaviour {
 	public int thisShipNumber;
 	public float speed = 1.0f;
 	public Platform myPlatform;
+	public bool isGoodShip;
 
 	private GameObject gameManager;
 	private GameObject exit;
@@ -23,7 +24,8 @@ public class Ship : MonoBehaviour {
 		thisShipNumber = shipGen.nextShipNumber;
 		Debug.Log ("Ship №" + thisShipNumber + " has arrived");
 		int randomIndex = Random.Range (0, shipGen.spriteList.Count);
-		this.GetComponent<SpriteRenderer> ().sprite = shipGen.spriteList[randomIndex];
+		this.GetComponentInChildren<SpriteRenderer> ().sprite = shipGen.spriteList[randomIndex];
+		isGoodShip = (Random.value > 0.5f);
 	}
 
 	public IEnumerator MoveTo () {
@@ -38,7 +40,11 @@ public class Ship : MonoBehaviour {
 				transform.rotation = Quaternion.identity;
 				myPlatform.isOccupied = true;
 				myPlatform.RemoveShipFromQueue ();
-				myPlatform.StartCoroutine ("ShipOnPlatformCountodown");
+				if (isGoodShip == true) {
+					gameManager.GetComponent<PlayerStats> ().playerMoney = gameManager.GetComponent<PlayerStats> ().playerMoney + 100;
+				} else {
+					gameManager.GetComponent<PlayerStats> ().playerMoney = gameManager.GetComponent<PlayerStats> ().playerMoney - 100;
+				}
 			}
 			yield return null;
 		}

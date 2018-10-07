@@ -11,6 +11,9 @@ public class ShipGenerator : MonoBehaviour {
 	[SerializeField]
 	private Ship shipPrefab;
 
+	[SerializeField]
+	private GameObject shipQueue;
+
 	public List<Sprite> spriteList = new List<Sprite> ();
 	public List<Ship> ships = new List<Ship> ();
 
@@ -27,11 +30,13 @@ public class ShipGenerator : MonoBehaviour {
 	IEnumerator GenerationCooldown () {
 		while (true) {
 			if (ships.Count < this.GetComponent<PlatformHolder> ().platformsNumber) {
-				Vector2 spawnPos = new Vector2 (0, 0) + new Vector2 (0, 1) * ships.Count;
-				ships.Add (Instantiate (shipPrefab, spawnPos, Quaternion.identity));
+				Vector2 spawnPos = new Vector2 (0, 0) + new Vector2 (0, 1) * shipQueue.transform.childCount;
+				Ship newShip = Instantiate (shipPrefab, spawnPos, Quaternion.identity);
+				newShip.transform.parent = shipQueue.transform;
+				ships.Add (newShip);
+				nextShipNumber = nextShipNumber + 1;
 			}
 			yield return new WaitForSeconds (genTime);
-			nextShipNumber = nextShipNumber + 1;
 		}
 	}
 
@@ -42,6 +47,9 @@ public class ShipGenerator : MonoBehaviour {
 
 	public void RemoveFirstShipInList () {
 		ships.RemoveAt (0);
+		foreach (Ship ship in ships) {
+			ship.transform.Translate (0, -1, 0);
+		}
 	}
 
 }

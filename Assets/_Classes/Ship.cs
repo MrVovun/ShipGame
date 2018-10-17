@@ -45,6 +45,8 @@ public class Ship : MonoBehaviour {
 				} else {
 					gameManager.GetComponent<PlayerStats> ().playerMoney = gameManager.GetComponent<PlayerStats> ().playerMoney - 100;
 				}
+				myPlatform.timer = Random.Range (10, 15);
+				myPlatform.StartCoroutine ("StartTimer");
 			}
 			yield return null;
 		}

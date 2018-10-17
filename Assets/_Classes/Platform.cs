@@ -8,6 +8,7 @@ public class Platform : MonoBehaviour {
 	public bool isOccupied = false;
 	public int occupiedShipNumber;
 	public int platformNumber;
+	public float timer;
 	public PlatformButton myButton;
 
 	private ShipGenerator shipGen;
@@ -31,6 +32,11 @@ public class Platform : MonoBehaviour {
 		shipGen.RemoveFirstShipInList ();
 		occupiedShipNumber = ship.thisShipNumber;
 		Debug.Log ("Platform №" + platformNumber + " is occupied with ship №" + occupiedShipNumber);
+	}
+
+	public IEnumerator StartTimer () {
+		yield return new WaitForSeconds (timer);
+		Debug.Log ("Platform " + platformNumber + " time is up");
 	}
 
 }

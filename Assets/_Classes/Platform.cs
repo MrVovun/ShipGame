@@ -10,6 +10,7 @@ public class Platform : MonoBehaviour {
 	public int platformNumber;
 	public float timer;
 	public PlatformButton myButton;
+	public Timer myTimer;
 
 	private ShipGenerator shipGen;
 	private Ship ship;
@@ -35,6 +36,7 @@ public class Platform : MonoBehaviour {
 	}
 
 	public IEnumerator StartTimer () {
+		myTimer.GetText ();
 		yield return new WaitForSeconds (timer);
 		Debug.Log ("Platform " + platformNumber + " time is up");
 	}

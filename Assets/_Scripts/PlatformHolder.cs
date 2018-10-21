@@ -7,6 +7,7 @@ public class PlatformHolder : MonoBehaviour {
 
 	public int platformsNumber;
 	public GameObject buttonHolder;
+	public GameObject timerHolder;
 
 	[SerializeField]
 	private GameObject platformLord;
@@ -27,7 +28,7 @@ public class PlatformHolder : MonoBehaviour {
 				xoffset = xoffset + new Vector2 (0, -1);
 			}
 			buttonHolder.GetComponent<SpawnButtons> ().Spawn ().GetComponentInChildren<PlatformButton> ().myPlatform = thisPlatform;
-
+			timerHolder.GetComponent<SpawnTimers> ().SpawnPlatformTimer ().GetComponentInChildren<Timer> ().myPlatform = thisPlatform;
 		}
 	}
 
@@ -53,6 +54,7 @@ public class PlatformHolder : MonoBehaviour {
 			xoffset = xoffset + new Vector2 (0, -1);
 		}
 		buttonHolder.GetComponent<SpawnButtons> ().Spawn ().GetComponentInChildren<PlatformButton> ().myPlatform = thisPlatform;
+		timerHolder.GetComponent<SpawnTimers> ().SpawnPlatformTimer ().GetComponentInChildren<Timer> ().myPlatform = thisPlatform;
 		platformsNumber = platformsNumber + 1;
 	}
 
